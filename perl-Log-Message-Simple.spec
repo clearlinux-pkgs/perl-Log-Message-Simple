@@ -4,11 +4,11 @@
 #
 Name     : perl-Log-Message-Simple
 Version  : 0.10
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-message-simple-perl/liblog-message-simple-perl_0.10-3.debian.tar.xz
-Summary  : 'Simplified interface to Log::Message'
+Summary  : Simplified interface to Log::Message
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Log-Message-Simple-license = %{version}-%{release}
@@ -24,6 +24,7 @@ the module usage information.
 Summary: dev components for the perl-Log-Message-Simple package.
 Group: Development
 Provides: perl-Log-Message-Simple-devel = %{version}-%{release}
+Requires: perl-Log-Message-Simple = %{version}-%{release}
 
 %description dev
 dev components for the perl-Log-Message-Simple package.
@@ -42,7 +43,7 @@ license components for the perl-Log-Message-Simple package.
 cd ..
 %setup -q -T -D -n Log-Message-Simple-0.10 -b 1
 mkdir -p deblicense/
-mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Log-Message-Simple-0.10/deblicense/
+cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Log-Message-Simple-0.10/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
