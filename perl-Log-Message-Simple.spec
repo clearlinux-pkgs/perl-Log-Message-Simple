@@ -4,14 +4,15 @@
 #
 Name     : perl-Log-Message-Simple
 Version  : 0.10
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-message-simple-perl/liblog-message-simple-perl_0.10-3.debian.tar.xz
-Summary  : Simplified interface to Log::Message
+Summary  : 'Simplified interface to Log::Message'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
 Requires: perl-Log-Message-Simple-license = %{version}-%{release}
+Requires: perl-Log-Message-Simple-perl = %{version}-%{release}
 BuildRequires : buildreq-cpan
 BuildRequires : perl(Log::Message)
 
@@ -38,18 +39,28 @@ Group: Default
 license components for the perl-Log-Message-Simple package.
 
 
+%package perl
+Summary: perl components for the perl-Log-Message-Simple package.
+Group: Default
+Requires: perl-Log-Message-Simple = %{version}-%{release}
+
+%description perl
+perl components for the perl-Log-Message-Simple package.
+
+
 %prep
 %setup -q -n Log-Message-Simple-0.10
-cd ..
-%setup -q -T -D -n Log-Message-Simple-0.10 -b 1
+cd %{_builddir}
+tar xf %{_sourcedir}/liblog-message-simple-perl_0.10-3.debian.tar.xz
+cd %{_builddir}/Log-Message-Simple-0.10
 mkdir -p deblicense/
-cp -r %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/Log-Message-Simple-0.10/deblicense/
+cp -r %{_builddir}/debian/* %{_builddir}/Log-Message-Simple-0.10/deblicense/
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
+export LANG=C.UTF-8
 if test -f Makefile.PL; then
 %{__perl} Makefile.PL
 make  %{?_smp_mflags}
@@ -59,7 +70,7 @@ else
 fi
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
@@ -68,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Log-Message-Simple
-cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Message-Simple/deblicense_copyright
+cp %{_builddir}/Log-Message-Simple-0.10/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Message-Simple/f5e33f014ea42b814cbdd28b80306334717ba46f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -81,7 +92,6 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.28.2/Log/Message/Simple.pm
 
 %files dev
 %defattr(-,root,root,-)
@@ -89,4 +99,8 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/perl-Log-Message-Simple/deblicense_copyright
+/usr/share/package-licenses/perl-Log-Message-Simple/f5e33f014ea42b814cbdd28b80306334717ba46f
+
+%files perl
+%defattr(-,root,root,-)
+/usr/lib/perl5/vendor_perl/5.30.1/Log/Message/Simple.pm
