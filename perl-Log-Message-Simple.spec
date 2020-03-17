@@ -4,7 +4,7 @@
 #
 Name     : perl-Log-Message-Simple
 Version  : 0.10
-Release  : 13
+Release  : 14
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-message-simple-perl/liblog-message-simple-perl_0.10-3.debian.tar.xz
@@ -79,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-Log-Message-Simple
-cp %{_builddir}/Log-Message-Simple-0.10/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Message-Simple/f5e33f014ea42b814cbdd28b80306334717ba46f
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-Log-Message-Simple/f5e33f014ea42b814cbdd28b80306334717ba46f
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -103,4 +103,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/Log/Message/Simple.pm
+/usr/lib/perl5/vendor_perl/5.30.2/Log/Message/Simple.pm
