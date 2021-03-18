@@ -4,7 +4,7 @@
 #
 Name     : perl-Log-Message-Simple
 Version  : 0.10
-Release  : 15
+Release  : 16
 URL      : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/B/BI/BINGOS/Log-Message-Simple-0.10.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblog-message-simple-perl/liblog-message-simple-perl_0.10-3.debian.tar.xz
@@ -103,4 +103,4 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.3/Log/Message/Simple.pm
+/usr/lib/perl5/vendor_perl/5.32.1/Log/Message/Simple.pm
